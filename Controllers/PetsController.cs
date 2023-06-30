@@ -125,11 +125,13 @@ namespace TamagotchiAPIV2.Controllers
         public async Task<ActionResult<Pet>> PostPet(Pet pet)
         {
             // Indicate to the database context we want to add this new record
+
+            // pet.HungerLevel = 0;
+            // pet.HappinessLevel = 0;
+            //  pet.Birthday = DateTime.Now;
+
             _context.Pets.Add(pet);
             await _context.SaveChangesAsync();
-            pet.HungerLevel = 0;
-            pet.HappinessLevel = 0;
-            pet.Birthday = DateTime.Now;
 
             // Return a response that indicates the object was created (status code `201`) and some additional
             // headers with details of the newly created object.
@@ -154,7 +156,6 @@ namespace TamagotchiAPIV2.Controllers
             //set the levels for hunger and happiness 
             pet.HungerLevel = pet.HungerLevel - 5;
             pet.HappinessLevel = pet.HappinessLevel + 3;
-            feeding.When = DateTime.Now;
 
             // Indicate to the database context we want to add this new record
             _context.Feedings.Add(feeding);
@@ -183,7 +184,6 @@ namespace TamagotchiAPIV2.Controllers
             //set the levels for hunger and happiness 
             pet.HungerLevel = pet.HungerLevel + 3;
             pet.HappinessLevel = pet.HappinessLevel + 5;
-            playtime.When = DateTime.Now;
 
             // Indicate to the database context we want to add this new record
             _context.Playtimes.Add(playtime);
@@ -211,7 +211,6 @@ namespace TamagotchiAPIV2.Controllers
 
             //set the levels for happiness 
             pet.HappinessLevel = pet.HappinessLevel - 5;
-            scolding.When = DateTime.Now;
 
             // Indicate to the database context we want to add this new record
             _context.Scoldings.Add(scolding);
